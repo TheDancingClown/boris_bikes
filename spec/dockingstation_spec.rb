@@ -10,4 +10,11 @@ describe DockingStation do
     end
   end
 
+  describe '#dock' do
+    it 'docks a bike' do
+      bike = Bike.new
+      expect(subject.dock(bike)).to eq bike
+    end
+  end
+
 end
