@@ -16,9 +16,14 @@ describe DockingStation do
       bike = Bike.new
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
-      expect(bike.working?).to eq true
     end
     it 'should not release a bike when empty' do
+      expect{ subject.release_bike }.to raise_error "There are no available bikes"
+    end
+    it 'should not release a broken bike' do
+      bike = Bike.new
+      bike.report_broken
+      subject.dock(bike)
       expect{ subject.release_bike }.to raise_error "There are no available bikes"
     end
   end
@@ -33,5 +38,6 @@ describe DockingStation do
       DockingStation::DEFAULT_CAPACITY.times {subject.dock(bike) }
       expect{ subject.dock(bike) }.to raise_error "The dock is full"
     end 
+    
   end
 end

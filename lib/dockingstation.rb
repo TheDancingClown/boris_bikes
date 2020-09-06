@@ -13,6 +13,8 @@ class DockingStation
   def release_bike
     if empty?
       fail 'There are no available bikes'
+    elsif @bikes.last.broken?
+      fail 'There are no available bikes'
     else 
       @bikes.pop
     end
