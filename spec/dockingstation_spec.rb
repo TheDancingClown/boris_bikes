@@ -2,6 +2,15 @@ require 'dockingstation'
 
 describe DockingStation do
   it { expect(subject).to respond_to :release_bike }
+  it 'has a variable maximum capacity' do
+    station = DockingStation.new(50)
+    expect(station.capacity).to eq 50
+  end
+
+  it 'has a default capacity' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
+
   describe '#release_bike' do
     it 'releases a bike' do
       bike = Bike.new
